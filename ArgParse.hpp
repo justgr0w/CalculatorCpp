@@ -17,7 +17,6 @@ using namespace Color;
 
 struct Data{
 
-    uint8_t Argc;
     string NameFlag;
     bool Debug, Help;
     vector<float> Vector;
@@ -32,7 +31,6 @@ class ArgParse{
         ArgParse( int argc, char **argv){
 
             if ( argc != 1 ){
-
                 this->argc = argc;
                 this->argv = argv;
 
@@ -46,12 +44,11 @@ class ArgParse{
 
 
         int FillData(){
-
             this->Parse.NameFlag = argv[1];
             this->Parse.Help = false;
 
             for ( int i = 2; i < this->argc; i++ ){
-                if ( strcmp("--debug", argv[i]) == 0 ){
+                if ( strcmp("--debug", this->argv[i]) == 0 ){
                     this->Parse.Debug = true;
                     break;
 
@@ -184,7 +181,6 @@ class ArgParse{
         }
 
     private:
-
         uint8_t argc;
         char **argv;
         ParseData Parse;
